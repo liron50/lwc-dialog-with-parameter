@@ -1,0 +1,62 @@
+<template>
+    <template if:true={visible}>
+        <div class="slds-container_small">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 data-id="titile" class="slds-text-heading_medium slds-hyphenate">{title}</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p id="data-id">{message}</p>
+
+                        <template for:each={inputList} for:item="inp">
+                            <template if:true={inp.isCombo}>
+                                <lightning-combobox
+                                    key={inp.name}
+                                    label={inp.label}
+                                    value={inp.value}
+                                    options={inp.options}
+                                    data-keyid={inp.name} 
+                                    required={inp.required} 
+                                    onchange={handleInputAdded}>
+                                </lightning-combobox>
+                            </template>
+
+                            <template if:true={inp.isInput}>
+                                <lightning-input 
+                                    value={inp.value} key={inp.name} type={inp.type} label={inp.label} data-keyid={inp.name} required={inp.required} onchange={handleInputAdded}>
+
+                                </lightning-input>
+                            </template>
+
+                            <template if:true={inp.isCheckbox}>
+                                <lightning-input 
+                                    key={inp.name} type='checkbox' label={inp.label} data-keyid={inp.name} required={inp.required} onchange={handleInputAdded} checked={inp.value}>
+
+                                </lightning-input>
+                            </template>
+                        </template>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                        <lightning-button variant="neutral"
+                                            name="cancel"
+                                            label={cancelLabel}
+                                            title={cancelLabel}
+                                            onclick={handleClick}>
+
+                        </lightning-button>
+
+                        <lightning-button variant="brand"
+                                          name="confirm"
+                                          label={confirmLabel}
+                                          title={confirmLabel}
+                                          onclick={handleClick} >
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </template>
+</template>

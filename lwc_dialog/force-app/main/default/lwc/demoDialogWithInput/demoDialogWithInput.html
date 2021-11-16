@@ -1,0 +1,17 @@
+<template>
+
+    <lightning-button variant="brand" label="Complete Registration" onclick={openModalDialog}>
+
+    </lightning-button>
+
+    <c-custom-dialog-modal title={modalTitle}
+                           message={modalMessage}
+                           confirm-label={modalConfirmLabel}
+                           cancel-label={modalCancelLabel}
+                           visible={showModal}
+                           name="confirmModal"
+                           original-message={modalOriginalMessage}
+                           input-list={modalInputList}
+                           onmodalaction={modalHandleClick}>
+    </c-custom-dialog-modal>
+</template>
